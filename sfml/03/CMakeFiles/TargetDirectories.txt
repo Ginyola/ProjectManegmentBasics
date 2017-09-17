@@ -1,3 +1,0 @@
-C:/git/ProjectManegmentBasics/sfml/03/CMakeFiles/03.dir
-C:/git/ProjectManegmentBasics/sfml/03/CMakeFiles/edit_cache.dir
-C:/git/ProjectManegmentBasics/sfml/03/CMakeFiles/rebuild_cache.dir
