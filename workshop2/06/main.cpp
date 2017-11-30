@@ -102,6 +102,8 @@ sf::Color setBallColor(PRNG &generator)
 {
 
     sf::Color arrayBallColors[maxColors];
+    // size_t size = sizeof(arrayBallColors) / sizeof(arrayBallColors[0]);
+    // std::cout << size << std::endl;
 
     putColorsInArray(arrayBallColors);
 
@@ -113,7 +115,6 @@ sf::Color setBallColor(PRNG &generator)
     int newBlue = (firstColor.b + secondColor.b) / 2;
 
     return sf::Color(newRed, newGreen, newBlue);
-    // return sf::Color(getRandomInt(generator, 0, 250), getRandomInt(generator, 0, 250), getRandomInt(generator, 0, 250));
 }
 
 void initBall(std::vector<Ball> &ball, PRNG &generator, sf::Vector2f &startPosition)
@@ -235,11 +236,13 @@ void changeBallLifeSpan(std::vector<Ball> &arrayOfBalls, const float deltaTime)
 void setBallNewPosition(std::vector<Ball> &arrayOfBalls, sf::Clock &clock)
 {
     const float deltaTime = clock.restart().asSeconds();
-
-    changeBallLifeSpan(arrayOfBalls, deltaTime);
-    // updateBallRadius(arrayOfBalls, deltaTime);
-    checkBallsClash(arrayOfBalls, deltaTime);
-    checkWallCrash(arrayOfBalls, deltaTime);
+    const float deltaMiniTime = deltaTime / arrayOfBalls.size();
+    // changeBallLifeSpan(arrayOfBalls, deltaTime);
+    for (int i = 0; i < arrayOfBalls.size(); i++)
+    {
+        checkBallsClash(arrayOfBalls, deltaMiniTime);
+        checkWallCrash(arrayOfBalls, deltaMiniTime);
+    }
 }
 
 void drawBalls(std::vector<Ball> &arrayOfBalls, sf::RenderWindow &window)
